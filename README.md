@@ -1,6 +1,6 @@
 # 🌥️ CloudForge25
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Contributors](https://img.shields.io/github/contributors/CloudForge25/CloudForge25.svg)](https://github.com/CloudForge25/CloudForge25/graphs/contributors)
 [![Issues](https://img.shields.io/github/issues/CloudForge25/CloudForge25.svg)](https://github.com/CloudForge25/CloudForge25/issues)
 [![Pull Requests](https://img.shields.io/github/issues-pr/CloudForge25/CloudForge25.svg)](https://github.com/CloudForge25/CloudForge25/pulls)
@@ -173,7 +173,7 @@ We welcome contributions from the community! Here's how you can help:
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
