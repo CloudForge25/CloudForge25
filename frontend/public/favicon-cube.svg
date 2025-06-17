@@ -1,0 +1,33 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cube1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06B6D4"/>
+      <stop offset="100%" style="stop-color:#0891B2"/>
+    </linearGradient>
+    <linearGradient id="cube2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#1E40AF"/>
+    </linearGradient>
+    <linearGradient id="cube3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B5CF6"/>
+      <stop offset="100%" style="stop-color:#7C3AED"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="32" height="32" rx="8" fill="#0F172A"/>
+  
+  <!-- 3D Cube representing container/cloud infrastructure -->
+  <!-- Top face -->
+  <path d="M16 8 L24 12 L16 16 L8 12 Z" fill="url(#cube1)"/>
+  
+  <!-- Left face -->
+  <path d="M8 12 L16 16 L16 24 L8 20 Z" fill="url(#cube2)"/>
+  
+  <!-- Right face -->
+  <path d="M16 16 L24 12 L24 20 L16 24 Z" fill="url(#cube3)"/>
+  
+  <!-- Cloud accent -->
+  <path d="M6 4 Q4 2 2 4 Q0 2 -2 4 Q0 6 2 4 Q4 6 6 4" fill="#60A5FA" opacity="0.6" transform="translate(26,0)"/>
+</svg>
+
