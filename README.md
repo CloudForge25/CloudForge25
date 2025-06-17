@@ -18,7 +18,7 @@ CloudForge25 aims to provide a comprehensive cloud development environment that 
 - 📊 **Analytics Dashboard** - Monitor application performance and usage
 - 🔒 **Security First** - Built-in security scanning and compliance tools
 - 🤝 **Team Collaboration** - Real-time code sharing and review tools
-- 📱 **Mobile Support** - Develop and manage projects on any device
+- 📱 **Mobile Support [Soon}** - Develop and manage projects on any device
 
 ## 🛠️ Tech Stack
 
@@ -131,8 +131,7 @@ CloudForge25/
 Our passionate team of developers working together to bring CloudForge25 to life:
 
 - **[Add Team Member Names]** - *Roles to be defined*
-
-*Want to join our team? Check out our [Contributing Guidelines](#contributing)!*
+- **[MrRyt247]** - *Free Roam*
 
 ## 🤝 Contributing
 
@@ -185,10 +184,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Issues**: [GitHub Issues](https://github.com/CloudForge25/CloudForge25/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/CloudForge25/CloudForge25/discussions)
-- **Email**: [Add team email if available]
+- **Email**: [cloudforge25@gmail.com](cloudforge25@gmail.com)
 
 ---
 
 <div align="center">
-  <sub>Built with ❤️ by the CloudForge25 team</sub>
+  <sub>Built with 🛠️ by the CloudForge25 team</sub>
 </div>
