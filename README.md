@@ -20,13 +20,40 @@ Tired of setting up dev environments? Sick of "works on my machine" issues? We g
 - 🤝 **Team Features** - Share code, review together, build better
 - 📱 **Mobile App** - Manage your projects from anywhere (eventually)
 
+## 🎨 Frontend Features (Currently Available)
+
+### 📱 **Modern React Dashboard**
+- **Interactive Dashboard**: Real-time resource monitoring with charts and metrics
+- **Virtual Machine Management**: Create, monitor, and manage cloud VMs
+- **Application Deployment**: Deploy and manage your applications
+- **Billing Overview**: Track costs and usage across all resources
+- **Settings Panel**: Customize your cloud environment preferences
+
+### 🎨 **UI/UX Features**
+- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile
+- **Dark/Light Theme**: Toggle between themes for comfortable viewing
+- **Modern Icons**: Beautiful Lucide React icons throughout the interface
+- **Data Visualization**: Interactive charts powered by Recharts
+- **Accessible Components**: Built with Radix UI for accessibility compliance
+
+### ⚡ **Technical Highlights**
+- **Lightning Fast**: Vite build system for instant development feedback
+- **Type Safety**: ESLint integration for code quality
+- **Modern CSS**: Tailwind CSS for utility-first styling
+- **Component Architecture**: Modular, reusable React components
+- **Routing**: Client-side routing with React Router DOM
+
 ## 🛠️ Tech Stack
 
 ### Frontend
-- **Framework**: React.js / Next.js (To be decided)
-- **Styling**: Tailwind CSS / Material-UI
-- **State Management**: Redux / Zustand
-- **Build Tool**: Vite / Webpack
+- **Framework**: React.js 19.1.0
+- **Build Tool**: Vite 7.0.4
+- **Styling**: Tailwind CSS 3.4.17
+- **Routing**: React Router DOM 7.7.0
+- **UI Components**: Radix UI (Dialog, Select, Tabs)
+- **Icons**: Lucide React 0.525.0
+- **Charts**: Recharts 3.1.0
+- **State Management**: React Context API
 
 ### Backend
 - **Runtime**: Node.js
@@ -96,17 +123,30 @@ CloudForge25/
 
 4. **Open in Browser**
    ```
-   http://localhost:3000
+   http://localhost:5173
    ```
+   
+   *Note: Vite runs on port 5173 by default*
+
+5. **Demo Login** (Frontend only - no backend yet)
+   - Click "Sign In" with any email/password to access the dashboard
+   - Explore the different pages: Dashboard, Virtual Machines, Applications, Billing, Settings
+   - Toggle between light and dark themes using the theme switcher
 
 ## 🎯 Development Roadmap
 
 ### Phase 1: Foundation (Current)
 - [x] Project initialization
 - [x] Repository setup
-- [ ] Frontend framework setup
-- [ ] Basic UI components
-- [ ] Project documentation
+- [x] Frontend framework setup (React + Vite)
+- [x] Basic UI components and layout
+- [x] Authentication system (UI)
+- [x] Dashboard with data visualization
+- [x] Multi-page application structure
+- [x] Responsive design with Tailwind CSS
+- [x] Theme system implementation
+- [ ] Backend API integration
+- [ ] Project documentation completion
 
 ### Phase 2: Core Features
 - [ ] User authentication system
@@ -164,8 +204,14 @@ We'd love your help! Here's how you can jump in:
 
 🚧 **Status**: In Active Development
 
-- **Frontend**: Initial setup phase
-- **Backend**: Planning phase
+- **Frontend**: ✅ Core implementation complete
+  - ✅ React app with modern tooling (Vite, Tailwind)
+  - ✅ Responsive dashboard with data visualization
+  - ✅ Multi-page application (Dashboard, VMs, Apps, Billing, Settings)
+  - ✅ Authentication flow (UI layer)
+  - ✅ Theme system with light/dark mode support
+  - ✅ Component library with Radix UI integration
+- **Backend**: Planning phase - API endpoints needed
 - **Documentation**: In progress
 - **Testing**: Not started
 - **Deployment**: Not started
