@@ -1,32 +1,43 @@
-# 🌥️ CloudForge25
+# CloudForge25
 
-[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-[![Contributors](https://img.shields.io/github/contributors/CloudForge25/CloudForge25.svg)](https://github.com/CloudForge25/CloudForge25/graphs/contributors)
-[![Issues](https://img.shields.io/github/issues/CloudForge25/CloudForge25.svg)](https://github.com/CloudForge25/CloudForge25/issues)
-[![Pull Requests](https://img.shields.io/github/issues-pr/CloudForge25/CloudForge25.svg)](https://github.com/CloudForge25/CloudForge25/pulls)
+A cloud development platform for modern developers.
 
-> A modern cloud-based development platform built by passionate developers for developers.
+## Overview
 
-## 🚀 Project Vision
+CloudForge25 is a cloud-based development environment that eliminates setup headaches and "works on my machine" problems.
 
-CloudForge25 aims to provide a comprehensive cloud development environment that empowers developers to build, deploy, and scale applications seamlessly. Our platform focuses on simplicity, collaboration, and cutting-edge technology.
+## Features
 
-## ✨ Features (Planned)
+- Cloud IDE with real-time collaboration
+- Easy deployment pipeline
+- Built-in analytics
+- Security scanning
+- Team collaboration tools
 
-- 🔧 **Integrated Development Environment** - Cloud-based IDE with real-time collaboration
-- 🚀 **One-Click Deployment** - Deploy applications to multiple cloud providers
-- 📊 **Analytics Dashboard** - Monitor application performance and usage
-- 🔒 **Security First** - Built-in security scanning and compliance tools
-- 🤝 **Team Collaboration** - Real-time code sharing and review tools
-- 📱 **Mobile Support [Soon}** - Develop and manage projects on any device
+## Current Status
+
+The frontend is mostly complete:
+
+- Dashboard with charts and metrics
+- VM management interface
+- Application deployment UI
+- Billing overview
+- Light/dark theme support
+- Responsive design
+
+Backend integration is next on the roadmap.
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-- **Framework**: React.js / Next.js (To be decided)
-- **Styling**: Tailwind CSS / Material-UI
-- **State Management**: Redux / Zustand
-- **Build Tool**: Vite / Webpack
+- **Framework**: React.js 19.1.0
+- **Build Tool**: Vite 7.0.4
+- **Styling**: Tailwind CSS 3.4.17
+- **Routing**: React Router DOM 7.7.0
+- **UI Components**: Radix UI (Dialog, Select, Tabs)
+- **Icons**: Lucide React 0.525.0
+- **Charts**: Recharts 3.1.0
+- **State Management**: React Context API
 
 ### Backend
 - **Runtime**: Node.js
@@ -96,17 +107,29 @@ CloudForge25/
 
 4. **Open in Browser**
    ```
-   http://localhost:3000
+   http://localhost:5173
    ```
+   
+   *Note: Vite runs on port 5173 by default*
+
+5. **Try it out** (Just frontend for now)
+   
+   Since we don't have a backend hooked up yet, just enter any email and password to get past the login screen. Then you can click around and see all the pages we've built. Don't forget to try the dark mode toggle - it's pretty satisfying!
 
 ## 🎯 Development Roadmap
 
 ### Phase 1: Foundation (Current)
 - [x] Project initialization
 - [x] Repository setup
-- [ ] Frontend framework setup
-- [ ] Basic UI components
-- [ ] Project documentation
+- [x] Frontend framework setup (React + Vite)
+- [x] Basic UI components and layout
+- [x] Authentication system (UI)
+- [x] Dashboard with data visualization
+- [x] Multi-page application structure
+- [x] Responsive design with Tailwind CSS
+- [x] Theme system implementation
+- [ ] Backend API integration
+- [ ] Project documentation completion
 
 ### Phase 2: Core Features
 - [ ] User authentication system
@@ -133,17 +156,17 @@ Our passionate team of developers working together to bring CloudForge25 to life
 - **[Add Team Member Names]** - *Roles to be defined*
 - **[MrRyt247]** - *Free Roam*
 
-## 🤝 Contributing
+## 🤝 Want to Help?
 
-We welcome contributions from the community! Here's how you can help:
+We'd love your help! Here's how you can jump in:
 
 ### Ways to Contribute
 
-1. **🐛 Bug Reports** - Found a bug? Let us know!
-2. **💡 Feature Requests** - Have an idea? We'd love to hear it!
-3. **📝 Documentation** - Help improve our docs
-4. **💻 Code Contributions** - Submit pull requests
-5. **🎨 UI/UX Design** - Make our platform beautiful
+1. **🐛 Found a Bug?** - Open an issue and tell us what broke
+2. **💡 Got an Idea?** - Share it! We're always looking for cool features
+3. **📝 Docs Need Work?** - Make them better (they probably do)
+4. **💻 Want to Code?** - Pick an issue and send us a PR
+5. **🎨 Design Skills?** - Help us make it look good
 
 ### Development Workflow
 
@@ -164,11 +187,11 @@ We welcome contributions from the community! Here's how you can help:
 
 🚧 **Status**: In Active Development
 
-- **Frontend**: Initial setup phase
-- **Backend**: Planning phase
-- **Documentation**: In progress
-- **Testing**: Not started
-- **Deployment**: Not started
+- **Frontend**: The React app is looking good! Dashboard works, all the main pages are there, charts are rendering, themes work, and it's responsive. Basically ready for the backend to plug into.
+- **Backend**: This is our next big focus. Need to build out the API endpoints and get everything connected.
+- **Documentation**: You're reading it! But we could always use more.
+- **Testing**: Yeah... we should probably write some tests soon.
+- **Deployment**: Once we get the backend sorted, we'll figure out hosting.
 
 ## 📄 License
 
