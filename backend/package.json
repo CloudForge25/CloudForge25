@@ -1,0 +1,28 @@
+{
+  "name": "cloudforge-backend",
+  "version": "1.0.0",
+  "description": "Backend to integrate Proxmox VE and PGSQL DB",
+  "homepage": "https://github.com/CloudForge25/CloudForge25/tree/main#readme",
+  "bugs": {
+    "url": "https://github.com/CloudForge25/CloudForge25/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CloudForge25/CloudForge25.git#main"
+  },
+  "license": "MIT",
+  "author": "MrRyt247",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^4.21.2",
+    "express-async-errors": "^3.1.1",
+    "nodemon": "^3.1.10"
+  }
+}
