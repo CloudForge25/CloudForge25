@@ -16,27 +16,33 @@ app.use(
   })
 );
 
+// Routes Initialization
+
+const vmRoutes = require("./routes/vm/vm.routes");
+
 // DB connections
 
 // Model initializtion
 
 // VMs
 
-proxmox.getClusterStatus(async (err, response) => {
-  if (err) throw err;
-  else {
-    data = JSON.parse(response);
-    console.log(data);
-  }
-});
+if (proxmox) console.log("Proxmox initialized successfully");
+else console.log("Proxmox initialization failed");
+// proxmox.getClusterStatus(async (err, response) => {
+//   if (err) throw err;
+//   else {
+//     data = JSON.parse(response);
+//     console.log(data);
+//   }
+// });
 
-proxmox.getNodes(async (err, response) => {
-  if (err) throw err;
-  else {
-    data = JSON.parse(response);
-    console.log(data);
-  }
-});
+// proxmox.getNodes(async (err, response) => {
+//   if (err) throw err;
+//   else {
+//     data = JSON.parse(response);
+//     console.log(data);
+//   }
+// });
 
 app.use(express.json());
 
@@ -45,9 +51,9 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.status(200).json({
     message: "Welcome to CloudForge!",
-    info: info,
   });
 });
+app.use("/vms", vmRoutes);
 app.use("*", (req, res, next) => {
   res.status(404).json({
     status: "Failed!",
