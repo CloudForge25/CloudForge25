@@ -2,12 +2,19 @@ require("express-async-errors");
 const express = require("express");
 const cors = require("cors");
 const errorHandler = require("./handlers/errorHandler");
+const proxmoxApi = require("proxmox-api").default;
 require("dotenv").config();
-const proxmox = require("proxmox")(
-  process.env.PVE_USER,
-  process.env.PVE_PASSWORD,
-  process.env.PVE_URL
-);
+const testProxmoxConnection = require("./tests/test")
+
+// Disable SSL verification for self-signed certificates (if needed)
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
+const proxmox = proxmoxApi({
+  host: process.env.PVE_HOST,
+  tokenID: process.env.PVE_TOKEN_ID,
+  tokenSecret: process.env.PVE_TOKEN_SECRET,
+  port: 8006,
+});
 
 const app = express();
 app.use(
@@ -15,6 +22,8 @@ app.use(
     origin: [`http://localhost:${process.env.PORT_NUMBER}`],
   })
 );
+
+app.use(express.json());
 
 // Routes Initialization
 
@@ -26,34 +35,27 @@ const vmRoutes = require("./routes/vm/vm.routes");
 
 // VMs
 
-if (proxmox) console.log("Proxmox initialized successfully");
-else console.log("Proxmox initialization failed");
-// proxmox.getClusterStatus(async (err, response) => {
-//   if (err) throw err;
-//   else {
-//     data = JSON.parse(response);
-//     console.log(data);
-//   }
-// });
-
-// proxmox.getNodes(async (err, response) => {
-//   if (err) throw err;
-//   else {
-//     data = JSON.parse(response);
-//     console.log(data);
-//   }
-// });
-
-app.use(express.json());
-
 // Routes
 
-app.get("/", (req, res) => {
-  res.status(200).json({
-    message: "Welcome to CloudForge!",
-  });
+app.get("/", async (req, res) => {
+  try {
+    await proxmox.cluster.status.$get();
+    res.status(200).json({
+      message: "Welcome to CloudForge!",
+      proxmoxConnected: true,
+    });
+  } catch (error) {
+    res.status(200).json({
+      message: "Welcome to CloudForge!",
+      proxmoxConnected: false,
+      error: error.message,
+    });
+  }
 });
+
+
 app.use("/vms", vmRoutes);
+
 app.use("*", (req, res, next) => {
   res.status(404).json({
     status: "Failed!",
