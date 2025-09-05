@@ -23,6 +23,7 @@
     "dotenv": "^17.2.2",
     "express": "^4.21.2",
     "express-async-errors": "^3.1.1",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "proxmox": "^1.0.0"
   }
 }
