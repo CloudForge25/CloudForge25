@@ -4,7 +4,6 @@ const cors = require("cors");
 const errorHandler = require("./handlers/errorHandler");
 const proxmoxApi = require("proxmox-api").default;
 require("dotenv").config();
-const testProxmoxConnection = require("./tests/test")
 
 // Disable SSL verification for self-signed certificates (if needed)
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
@@ -28,6 +27,7 @@ app.use(express.json());
 // Routes Initialization
 
 const vmRoutes = require("./routes/vm/vm.routes");
+const clusterRoutes = require("./routes/cluster/cluster.routes");
 
 // DB connections
 
@@ -53,8 +53,8 @@ app.get("/", async (req, res) => {
   }
 });
 
-
 app.use("/vms", vmRoutes);
+app.use("/cluster", clusterRoutes);
 
 app.use("*", (req, res, next) => {
   res.status(404).json({
