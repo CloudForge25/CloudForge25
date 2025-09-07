@@ -50,9 +50,10 @@ vmRoutes.get("/:node/:vmid", async (req, res) => {
 // Create VM
 vmRoutes.post("/:node", async (req, res) => {
   try {
+    const id = await proxmox.cluster.nextid.$get();
     const {
       agent = "1,fstrim_cloned_disks=1",
-      vmid,
+      vmid = id,
       name,
       storage,
       memory = 2048,
@@ -61,9 +62,9 @@ vmRoutes.post("/:node", async (req, res) => {
       net0 = "virtio,bridge=vmbr0",
       ide0 = `local-lvm:${storage}`,
       ide2 = "local:cloudinit",
-      serial0 = "socket",
-      vga = "serial0",
-      audio0 = "device=ich9-intel,driver=none",
+      // serial0 = "socket",
+      vga = "type=cirrus,memory=128", // enum":["cirrus","qxl","qxl2","qxl3","qxl4","none","serial0","serial1","serial2","serial3","std","virtio","virtio-gl","vmware"],
+      audio0 = "device=intel-hda,driver=none",
       scsihw = "virtio-scsi-single",
     } = req.body;
 
@@ -83,7 +84,7 @@ vmRoutes.post("/:node", async (req, res) => {
       net0,
       ide0,
       ide2,
-      serial0,
+      // serial0,
       vga,
       audio0,
       scsihw,

@@ -1,6 +1,5 @@
 const express = require("express");
 const nodeRoutes = express.Router();
-require("dotenv").config();
 const proxmox = require("../../utils/proxmoxClient");
 
 // Routes

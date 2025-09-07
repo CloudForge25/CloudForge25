@@ -44,7 +44,7 @@ app.get("/", async (req, res) => {
   }
 });
 
-app.use("/node", nodeRoutes);
+app.use("/nodes", nodeRoutes);
 app.use("/vms", vmRoutes);
 app.use("/cluster", clusterRoutes);
 
