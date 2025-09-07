@@ -1,17 +1,7 @@
 const express = require("express");
-
 const nodeRoutes = express.Router();
-const proxmoxApi = require("proxmox-api").default;
 require("dotenv").config();
-
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-
-const proxmox = proxmoxApi({
-  host: process.env.PVE_HOST,
-  tokenID: process.env.PVE_TOKEN_ID,
-  tokenSecret: process.env.PVE_TOKEN_SECRET,
-  port: 8006,
-});
+const proxmox = require("../../utils/proxmoxClient");
 
 // Routes
 // nodeRoutes.get("/", (req, res) => {
@@ -23,7 +13,6 @@ const proxmox = proxmoxApi({
 // Get all nodes
 nodeRoutes.get("/", async (req, res) => {
   try {
-    // const vm = await proxmox.nodes[req.params.node].qemu.$get();
     const vm = await proxmox.nodes.$get();
 
     res.json({

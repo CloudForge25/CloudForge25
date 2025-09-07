@@ -1,16 +1,6 @@
 const express = require("express");
 const vmRoutes = express.Router();
-const proxmoxApi = require("proxmox-api").default;
-require("dotenv").config();
-
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-
-const proxmox = proxmoxApi({
-  host: process.env.PVE_HOST,
-  tokenID: process.env.PVE_TOKEN_ID,
-  tokenSecret: process.env.PVE_TOKEN_SECRET,
-  port: 8006,
-});
+const proxmox = require("../../utils/proxmoxClient");
 
 // Routes
 vmRoutes.get("/", (req, res) => {
@@ -73,7 +63,7 @@ vmRoutes.post("/:node", async (req, res) => {
       ide2 = "local:cloudinit",
       serial0 = "socket",
       vga = "serial0",
-      audio0 = "device=ich9-intel-hda,driver=spice",
+      audio0 = "device=ich9-intel,driver=none",
       scsihw = "virtio-scsi-single",
     } = req.body;
 
