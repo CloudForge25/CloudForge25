@@ -26,6 +26,7 @@ app.use(express.json());
 
 // Routes Initialization
 
+const nodeRoutes = require("./routes/node/node.routes");
 const vmRoutes = require("./routes/vm/vm.routes");
 const clusterRoutes = require("./routes/cluster/cluster.routes");
 
@@ -53,6 +54,7 @@ app.get("/", async (req, res) => {
   }
 });
 
+app.use("/node", nodeRoutes);
 app.use("/vms", vmRoutes);
 app.use("/cluster", clusterRoutes);
 
