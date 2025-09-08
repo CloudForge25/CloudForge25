@@ -56,14 +56,17 @@ vmRoutes.post("/:node", async (req, res) => {
       vmid = id,
       name,
       storage,
+      cpu,
       memory = 2048,
+      vram = 128,
+      vtype = "cirrus",
       cores = 2,
       ostype, // l24, l26, w2k, w2k8, wxp, wvista, win7, ..., win11, solaris, other
       net0 = "virtio,bridge=vmbr0",
       ide0 = `local-lvm:${storage}`,
       ide2 = "local:cloudinit",
       // serial0 = "socket",
-      vga = "type=cirrus,memory=128", // enum":["cirrus","qxl","qxl2","qxl3","qxl4","none","serial0","serial1","serial2","serial3","std","virtio","virtio-gl","vmware"],
+      vga = `type=${vtype},memory=${vram}`, // enum":["cirrus","qxl","qxl2","qxl3","qxl4","none","serial0","serial1","serial2","serial3","std","virtio","virtio-gl","vmware"],
       audio0 = "device=intel-hda,driver=none",
       scsihw = "virtio-scsi-single",
     } = req.body;
@@ -79,6 +82,7 @@ vmRoutes.post("/:node", async (req, res) => {
       vmid,
       name,
       memory,
+      cpu,
       cores,
       ostype,
       net0,
@@ -217,6 +221,27 @@ vmRoutes.post("/:node/:vmid/reboot", async (req, res) => {
         error: "VM is not running",
       });
     }
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+});
+
+// Delete VM
+vmRoutes.delete("/:node/:vmid", async (req, res) => {
+  try {
+    const vm = await proxmox.nodes[req.params.node].qemu[
+      req.params.vmid
+    ].$delete({
+      "destroy-unreferenced-disks": true,
+      purge: true,
+    });
+    res.json({
+      success: true,
+      data: vm,
+    });
   } catch (error) {
     res.status(500).json({
       success: false,
