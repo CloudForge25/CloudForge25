@@ -63,6 +63,44 @@ nodeRoutes.get("/:node/storage", async (req, res) => {
   }
 });
 
+// // ISO images
+nodeRoutes.get("/:node/iso", async (req, res) => {
+  try {
+    const vm = await proxmox.nodes[req.params.node].storage[
+      "local"
+    ].content.$get();
+
+    res.json({
+      success: true,
+      data: vm,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+});
+
+// // Disk images
+nodeRoutes.get("/:node/disks", async (req, res) => {
+  try {
+    const vm = await proxmox.nodes[req.params.node].storage[
+      "local-lvm"
+    ].content.$get();
+
+    res.json({
+      success: true,
+      data: vm,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+});
+
 // // Time
 nodeRoutes.get("/:node/time", async (req, res) => {
   try {

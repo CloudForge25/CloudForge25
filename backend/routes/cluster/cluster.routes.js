@@ -13,24 +13,6 @@ const proxmox = require("../../utils/proxmoxClient");
 clusterRoutes.get("/", async (req, res) => {
   try {
     // const vm = await proxmox.cluster.status.$get();
-    const vm = await proxmox.cluster.nextid.$get();
-
-    res.json({
-      success: true,
-      data: vm,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      error: error.message,
-    });
-  }
-});
-
-// Get all clusters
-clusterRoutes.get("/s", async (req, res) => {
-  try {
-    // const vm = await proxmox.cluster.status.$get();
     const vm = await proxmox.cluster.tasks.$get();
 
     res.json({
