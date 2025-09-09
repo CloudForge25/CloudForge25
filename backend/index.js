@@ -18,6 +18,7 @@ app.use(express.json());
 
 const nodeRoutes = require("./routes/node/node.routes");
 const vmRoutes = require("./routes/vm/vm.routes");
+const lxcRoutes = require("./routes/lxc/lxc.routes");
 const clusterRoutes = require("./routes/cluster/cluster.routes");
 
 // DB connections
@@ -46,6 +47,7 @@ app.get("/", async (req, res) => {
 
 app.use("/nodes", nodeRoutes);
 app.use("/vms", vmRoutes);
+app.use("/lxc", lxcRoutes);
 app.use("/cluster", clusterRoutes);
 
 app.use("*", (req, res, next) => {
