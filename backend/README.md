@@ -1,109 +1,122 @@
-# 🛠️ CloudForge25 Backend
+# CloudForge25 Backend
 
-> Backend API and services for the CloudForge25 cloud development platform
+> Express.js API for managing Proxmox VE infrastructure
 
-## 🚀 Overview
+## Overview
 
-This directory contains the backend services for CloudForge25, including:
+REST API backend that interfaces with a Proxmox VE hypervisor to manage virtual machines, Linux containers, nodes, and cluster resources.
 
-- 🌐 **RESTful API** - Core application programming interface
-- 🔐 **Authentication Service** - User management and security
-- 📁 **File Management** - Cloud file storage and operations
-- 🛠️ **Project Management** - Development project handling
-- 📊 **Analytics Service** - Usage tracking and insights
+## Tech Stack
 
-## 📚 Tech Stack
-
-- **Runtime**: Node.js (v18+)
+- **Runtime**: Node.js
 - **Framework**: Express.js
-- **Database**: PostgreSQL with Prisma ORM
-- **Authentication**: JWT + bcrypt
-- **File Storage**: AWS S3 / Azure Blob
-- **Testing**: Jest + Supertest
-- **Documentation**: Swagger/OpenAPI
+- **Proxmox Integration**: proxmox-api
+- **Auth**: Proxmox API Token
 
-## 📁 Directory Structure
+## Directory Structure
 
 ```
 backend/
-├── src/
-│   ├── controllers/        # Request handlers
-│   ├── middleware/         # Express middleware
-│   ├── models/            # Database models
-│   ├── routes/            # API routes
-│   ├── services/          # Business logic
-│   ├── utils/             # Helper functions
-│   └── app.js             # Express app setup
-├── tests/                # Test files
-├── docs/                 # API documentation
-├── prisma/               # Database schema
-├── package.json
-├── .env.example
-└── README.md
+├── handlers/
+│   └── errorHandler.js     # Global error middleware
+├── routes/
+│   ├── cluster/
+│   │   └── cluster.routes.js
+│   ├── lxc/
+│   │   └── lxc.routes.js
+│   ├── node/
+│   │   └── node.routes.js
+│   └── vm/
+│       └── vm.routes.js
+├── utils/
+│   └── proxmoxClient.js    # Proxmox API client setup
+├── index.js
+└── .env
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
-- Node.js v18+
-- PostgreSQL
-- npm or yarn
+- Node.js
+- A running Proxmox VE instance
+- Proxmox API token
 
 ### Installation
 
 ```bash
-# Install dependencies
 npm install
-
-# Setup environment variables
-cp .env.example .env
-# Edit .env with your configuration
-
-# Setup database
-npx prisma migrate dev
-npx prisma generate
-
-# Start development server
-npm run dev
 ```
 
-## 🗺️ API Endpoints
+### Environment Variables
 
-### Authentication
-- `POST /api/auth/register` - User registration
-- `POST /api/auth/login` - User login
-- `POST /api/auth/logout` - User logout
-- `GET /api/auth/me` - Get current user
+Create a `.env` file:
 
-### Projects
-- `GET /api/projects` - List user projects
-- `POST /api/projects` - Create new project
-- `GET /api/projects/:id` - Get project details
-- `PUT /api/projects/:id` - Update project
-- `DELETE /api/projects/:id` - Delete project
+```env
+PORT_NUMBER=5050
 
-### Files
-- `GET /api/files/:projectId` - List project files
-- `POST /api/files/:projectId` - Upload file
-- `GET /api/files/:projectId/:fileId` - Get file content
-- `PUT /api/files/:projectId/:fileId` - Update file
-- `DELETE /api/files/:projectId/:fileId` - Delete file
+PVE_HOST=<proxmox-host-ip>
+PVE_TOKEN_ID=<user@realm!tokenname>
+PVE_TOKEN_SECRET=<token-secret>
+```
 
-## 📊 Development Status
+### Run
 
-- [ ] Project setup and structure
-- [ ] Database schema design
-- [ ] Authentication system
-- [ ] Project management API
-- [ ] File management system
-- [ ] Testing implementation
-- [ ] Documentation
-- [ ] Deployment configuration
+```bash
+npm start
+```
 
-## 🤝 Contributing
+## API Endpoints
 
-See the main [Contributing Guidelines](../README.md#contributing) for details on how to contribute to the backend.
+### Health Check
+| Method | Path | Description |
+|--------|------|-------------|
+| `GET` | `/` | Server status and Proxmox connectivity check |
 
----
+### Nodes — `/nodes`
+| Method | Path | Description |
+|--------|------|-------------|
+| `GET` | `/nodes` | List all nodes |
+| `GET` | `/nodes/:node` | Get node QEMU machine capabilities |
+| `GET` | `/nodes/:node/storage` | List node storage pools |
+| `GET` | `/nodes/:node/iso` | List ISO images (local storage) |
+| `GET` | `/nodes/:node/disks` | List disk volumes (local-lvm) |
+| `GET` | `/nodes/:node/time` | Get node time |
+| `GET` | `/nodes/:node/version` | Get node version |
 
-🗺️ **Part of the CloudForge25 ecosystem**
+### Virtual Machines — `/vms`
+| Method | Path | Description |
+|--------|------|-------------|
+| `GET` | `/vms/:node` | Get node PCI hardware info |
+| `GET` | `/vms/:node/:vmid` | Get VM status |
+| `POST` | `/vms/:node` | Create a new VM |
+| `POST` | `/vms/:node/:vmid/start` | Start a VM |
+| `POST` | `/vms/:node/:vmid/stop` | Force stop a VM |
+| `POST` | `/vms/:node/:vmid/shutdown` | Graceful shutdown |
+| `POST` | `/vms/:node/:vmid/reboot` | Reboot a VM |
+| `DELETE` | `/vms/:node/:vmid` | Delete a VM (purges disks) |
+
+#### Create VM — Request Body
+
+```json
+{
+  "name": "my-vm",
+  "storage": "local-lvm",
+  "cpu": "host",
+  "memory": 2048,
+  "cores": 2,
+  "ostype": "l26",
+  "vram": 128,
+  "vtype": "cirrus"
+}
+```
+
+### Linux Containers — `/lxc`
+| Method | Path | Description |
+|--------|------|-------------|
+| `GET` | `/lxc` | LXC route (stub) |
+
+### Cluster — `/cluster`
+| Method | Path | Description |
+|--------|------|-------------|
+| `GET` | `/cluster` | List cluster tasks |
+| `GET` | `/cluster/status` | Get cluster task status |
